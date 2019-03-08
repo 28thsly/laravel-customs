@@ -1,0 +1,13 @@
+{
+    "name": "artinict/laravel-customs",
+    "description": "A package that provides a cleaner way to import classes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sadiq Lukman",
+            "email": "helloartinict@gmail.com"
+        }
+    ],
+    "require": {}
+}
