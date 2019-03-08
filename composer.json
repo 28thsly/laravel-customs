@@ -1,6 +1,6 @@
 {
     "name": "artinict/laravel-customs",
-    "description": "A package that provides a cleaner way to import classes",
+    "description": "A cleaner way to import classes in Laravel.",
     "type": "library",
     "license": "MIT",
     "authors": [
