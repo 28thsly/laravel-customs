@@ -14,8 +14,8 @@ class LaravelCustoms
 
     //Load customs configuration file
     $cusfigurationPath = $baseDir.'\\config\\cusfiguration.php';
-    if(! file_exists($cusfigurationPath) )
-      if(! @copy($currentDir.'\\cusfiguration.php', $cusfigurationPath))
+    if( ! file_exists($cusfigurationPath) )
+      if( ! @copy($currentDir.'\\cusfiguration.php', $cusfigurationPath))
           throw new \Exception("Cusfiguration.php NOT FOUND. Kindly reinstall the Laravel customs package.");
 
     $cusfiguration = require $cusfigurationPath;
