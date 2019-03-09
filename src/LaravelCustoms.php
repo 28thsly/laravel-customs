@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Artinict;
+namespace Artinict;
 
 
 class LaravelCustoms
