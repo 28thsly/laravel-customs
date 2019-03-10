@@ -7,6 +7,14 @@ LC uses a concept known as IOCA (Import Once Call Anywhere).
 
 > And if you don't want to use this concept, LC will automatically import the class on the fly. (See "Automatic Resolving" below)
 
+## Table of Contents
+1. <a href="">Installation</a>
+2. <a href="">Usage</a>
+3. <a href="">Import Once Call Anywhere (IOCA)</a>
+4. <a href="">Customs Configuration</a>
+5. <a href="">Credits</a>
+6. <a href="">License</a>
+
 ## Installation
 
 ```
