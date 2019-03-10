@@ -103,7 +103,7 @@ Ok! So what about ```use Illuminate\Http\Request```???! Unfortunately, LC cannot
 
 **General usage with examples**:
 
-1. For non-static methods:<br/> LC::Prefix_Classname(['methodName'], [args]);
+1. **For non-static methods:**<br/> LC::Prefix_Classname(['methodName'], [args]);
 
 ```
 Example:
@@ -114,7 +114,7 @@ is equivalent to:
 
 ```
 
-2. For static methods, put ```::``` at the front of the methodName:<br/>LC::Prefix_Classname(['::methodName'], [args]); 
+2. **For static methods, put ```::``` at the front of the methodName:**<br/>LC::Prefix_Classname(['::methodName'], [args]); 
 
 ```
 Example:
@@ -125,7 +125,7 @@ Illuminate\Support\Facades\View::make('path.to.view');
 
 ```
 
-3. Calling a non-static method without "Prefix":<br/>LC::Classname(['methodName'], [args]); 
+3. **Calling a non-static method without "Prefix":**<br/>LC::Classname(['methodName'], [args]); 
 
 ```
 Example:
@@ -136,7 +136,7 @@ is equivalent to:
 
 ```
 
-4. To get a non-static property of a class:<br/> $classInstance = LC::Classname(); <br/> $property = (new $classInstance)->propertyName; 
+4. **To get a non-static property of a class:**<br/> $classInstance = LC::Classname(); <br/> $property = (new $classInstance)->propertyName; 
 
 ```
 Example: 
@@ -150,7 +150,7 @@ $property = (new App\Flight)->$category;
 
 ```
 
-5. To get a static property of a class:<br/> LC::Classname()::$staticProperty; 
+5. **To get a static property of a class:**<br/> LC::Classname()::$staticProperty; 
 
 ```
 Example:
@@ -161,7 +161,7 @@ App\Flight::$category;
 
 ```
 
-6. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
+6. **Finally, if you don't pass any argument, LaravelCustoms will return the class path.**
 ```
 Example:
 LC::User(); 
