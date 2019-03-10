@@ -105,46 +105,57 @@ One of the objectives of LaravelCustoms is to get rid of having to repeatedly im
 In the customs configuration file provided  (See next section). Define your imports like so:
 
 **Import using Alias** 
+
 Alias is a simple way to import classes. This is perfect for your Models and other classes that are likely not to have a classname clash. 
 
-```[
+```
+[
       "Alias" => Namespace\Classname::class
-   ],
-   ```
+],
+
+```
+
 For example, ```App\UserFlightModel.php``` can be imported as:
-```[
+```
+[
       "UFModel" => App\UserFlight::class
-   ],
-   ``` 
+],
 
-And this would be called as ```LC::UFModel()```.
+``` 
 
- **Import using prefix**
+And this would be called as ```LC::UFModel();```.
+
+**Import using prefix**
+
 Prefix is a cleaner way to import classes. It groups a set of classes into a category (called Prefix). This helps to mitigate classname clashes.
 
-```[
+```
+[
       "Prefix" => [
       
-            "Alias" => Namespace\Classname::class,
-      
+            "Alias" => Namespace\Classname::class,  
       ],
-   ],
-   ```
+],
+
+```
    
 For example, ```App\Repository\FlightRepository.php``` can be imported as:
 
-```[
+```
+[
       "Repo" => [
       
             "Flight" => App\Repository\Flight::class,
       
       ],
    ],
-   ```
 
-And this would be called as ```LC::Repo_Flight()```.
+```
+
+And this would be called as ```LC::Repo_Flight();```.
 
 ## Customs Configuration
+
 When you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
 
 ```
