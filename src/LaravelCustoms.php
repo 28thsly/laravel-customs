@@ -10,7 +10,7 @@ class LaravelCustoms
   {
 
     $currentDir = dirname(__FILE__);
-    $baseDir = dirname(dirname($currentDir));
+    $baseDir = dirname(dirname(dirname(dirname($currentDir))));
 
     //Load customs configuration file
     $cusfigurationPath = $baseDir.'\\config\\cusfiguration.php';

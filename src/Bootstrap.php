@@ -11,7 +11,7 @@ class Bootstrap
     {
 
       $currentDir = dirname(__FILE__);
-      $baseDir = dirname(dirname($currentDir));
+      $baseDir = dirname(dirname(dirname(dirname($currentDir))));
 
       //copy customs configuration file to the config directory
       $cusfigurationPath = $baseDir.'\\config\\cusfiguration.php';
