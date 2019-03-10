@@ -82,20 +82,21 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 
 > 1. LC::Prefix_Classname(['methodName'], [args]); // For non-static methods.
 
-E.g. ```LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN');``` means ```(new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
+```E.g. LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); is equivalent to (new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
 
 > 2. LC::Prefix_Classname(['::methodName'], [args]); // For static methods, put ```::``` at the front of the method. 
 
-E.g. ```LC::Facades_View('::make', 'path.to.view');``` means ```Illuminate\Support\Facades\View::make('path.to.view');```
+```E.g. LC::Facades_View('::make', 'path.to.view'); is equivalent to Illuminate\Support\Facades\View::make('path.to.view');```
 
 > 3. LC::Classname(['methodName'], [args]); 
 
-E.g. ```LC::User('getName');``` means ```App\User::getName();```
+```E.g. LC::User('getName'); is equivalent to App\User::getName();```
+
+> 4. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
+```E.g. LC::User(); will return App\User```
 
 ## Customs Configuration
 As you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
-
-> Note: LC_APP_NAMESPACE is a reserved key name and MUST NOT be overwritten.
 
 ```
 <?php
@@ -145,12 +146,14 @@ return [
     */
 
     'Repository' => [
-
-
+    
+            'Flights' => App\Repository\Flights::class,
+            
     ],
 
     'Services' => [
-
+    
+            'AirAPI' => App\Services\AirAPI::class,
 
     ],
 
@@ -253,6 +256,13 @@ return [
 ];
 
 ```
+
+> Note: LC_APP_NAMESPACE is a reserved key name and MUST NOT be overwritten.
+
+**Automatic Resolve**<br/>
+If you call a class that you didn't import in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app\``` directory to find the class and import it on the fly. An exception would be thrown if the class doesn't exists. 
+
+> This is not a recommended approach especially on large projects.
 
 ## Credit
 Sadiq Lukman, Artinict. <br/>
