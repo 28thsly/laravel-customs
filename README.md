@@ -332,7 +332,7 @@ If you call a class that you didn't import in the ```cusfiguration.php```. Larav
 
 > This is not a recommended approach especially on large projects.
 
-## Credit
+## Credits
 Sadiq Lukman, Artinict. <br/>
 https://twitter.com/28thsly
 
