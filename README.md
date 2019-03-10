@@ -75,10 +75,21 @@ class FlightController extends Controller
 }
 ```
 OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
+
 <p>As a rule of thumb, LaravelCustoms should not replace the preloaded classes written by Laravel.</p>
-Here's the general syntax:
-> LC::[Prefix_]Classname('methodName', [args]) For non-static methods. E.g. LC::Repository_('::make', 'path.to.view');
-> LC::[Prefix_]Classname('::methodName', [args]) For static methods. E.g. LC::Facades_View('::make', 'path.to.view');
+
+**General syntax with examples**:
+
+> LC::[Prefix_]Classname('methodName', [args]); // For non-static methods.
+
+<p> 
+      E.g. LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); means ```(new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
+</p>
+
+> LC::[Prefix_]Classname('::methodName', [args]); // For static methods. 
+<p> 
+      E.g. LC::Facades_View('::make', 'path.to.view'); means ```Illuminate\Support\Facades\View::make('path.to.view');```
+</p>
 
 ## Customs Configuration
 As you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
