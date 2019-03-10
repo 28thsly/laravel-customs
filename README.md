@@ -1,9 +1,11 @@
 <p align="center"><img src="http://leedder.com/display_image/reformed/5c847c7d92f23_7119356000.png/150/150/1" alt="Laravel Customs Logo"/></p>
 
 # Laravel Customs
-LaravelCustoms (LC) is a package that provides a cleaner way to import your classes and third-party packages. You can think of it this way: Composer manages your dependencies. Customs regulates the import.
+LaravelCustoms (LC) is a package that provides a cleaner way to import your classes and third-party packages. You can think of it this way: Composer manages your dependencies, Customs regulates your imports.
 
-LC uses a concept known as IOCA (Import Once Call Anywhere).
+LC uses a concept known as IOCA (Import Once Call Anywhere). 
+
+> And if you don't want to use this concept, LC will automatically import the class on the fly. (See "Automatic Resolving" below)
 
 ## Installation
 
@@ -52,7 +54,7 @@ class FlightController extends Controller
 }
 ```
 
-**With LaravelCustoms, you don't have to import mulitple classes anymore. Instead, you import a single class like so:**
+**But now, with LaravelCustoms, you don't have to import mulitple classes anymore. Instead, you import a single class like so:**
 ```
 <?php
 
@@ -70,7 +72,7 @@ class FlightController extends Controller
   
       $flight = LC::Repository_Flight('::getFlightTo', 'Wakanda'); //for static methods
       $price = LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); //for non-static methods
-      $user = LC::User()::all(); 
+      $user = LC::User('::all'); 
       //...
     }
   
@@ -80,7 +82,7 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 
 <p>As a rule of thumb, LaravelCustoms should not replace the preloaded classes written by Laravel.</p>
 
-**General syntax with examples**:
+**General usage with examples**:
 
 > 1. LC::Prefix_Classname(['methodName'], [args]); // For non-static methods.
 
@@ -97,8 +99,53 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 > 4. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
 ```E.g. LC::User(); will return App\User```
 
+## Import Once Call Anywhere (IOCA)
+One of the objectives of LaravelCustoms is to get rid of having to repeatedly import classes everytime you need them. LC provides a cleaner way to do this by using a new concept known as IOCA (Import Once Call Anywhere).
+
+In the customs configuration file provided  (See next section). Define your imports like so:
+
+**Import using Alias** 
+Alias is a simple way to import classes. This is perfect for your Models and other classes that are likely not to have a classname clash. 
+
+```[
+      "Alias" => Namespace\Classname::class
+   ],
+   ```
+For example, ```App\UserFlightModel.php``` can be imported as:
+```[
+      "UFModel" => App\UserFlight::class
+   ],
+   ``` 
+
+And this would be called as ```LC::UFModel()```.
+
+ **Import using prefix**
+Prefix is a cleaner way to import classes. It groups a set of classes into a category (called Prefix). This helps to mitigate classname clashes.
+
+```[
+      "Prefix" => [
+      
+            "Alias" => Namespace\Classname::class,
+      
+      ],
+   ],
+   ```
+   
+For example, ```App\Repository\FlightRepository.php``` can be imported as:
+
+```[
+      "Repo" => [
+      
+            "Flight" => App\Repository\Flight::class,
+      
+      ],
+   ],
+   ```
+
+And this would be called as ```LC::Repo_Flight()```.
+
 ## Customs Configuration
-As you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
+When you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
 
 ```
 <?php
@@ -261,7 +308,7 @@ return [
 
 > Note: LC_APP_NAMESPACE is a reserved key name and MUST NOT be overwritten.
 
-**Automatic Resolve**<br/>
+**Automatic Resolving**<br/>
 If you call a class that you didn't import in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app\``` directory to find the class and import it on the fly. An exception would be thrown if the class doesn't exists. 
 
 > This is not a recommended approach especially on large projects.
