@@ -69,8 +69,8 @@ class FlightController extends Controller
 namespace App\Http\Controllers;
 
 
-use Artinict\LaravelCustoms as LC;
 use App\Http\Controllers\Controller; //But wait! Why is this guy still here then?🤨 [See next paragraph]
+use Artinict\LaravelCustoms as LC;
 
 class FlightController extends Controller
 {
@@ -334,7 +334,7 @@ If you call a class that you didn't import in the ```cusfiguration.php```. Larav
 
 ## Credits
 Sadiq Lukman, Artinict. <br/>
-<a href="https://twitter.com/28thsly" target="_blank">https://twitter.com/28thsly</a>
+<https://twitter.com/28thsly
 
 ## License
 
