@@ -30,9 +30,38 @@ composer require artinict/laravel-customs
 }    
 ```
 
+If installation was successful, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. 
+
+> NB: If you don't find the ```cusfiguration.php``` in ```config```, copy the ```cusfiguration.php``` in the ```$BASE_DIR.\vendor\artinict\laravel-customs\src\``` to ```$BASE_DIR.\config\``` <br/> Or:<br/> Import LaravelCustoms at the top of any of your classes and run the app. Now check the ```config``` for ```cusfiguration.php```
+
 ## Usage
 
-**Typically you would do this:**
+Import ```LaravelCustoms``` at the top of your class.
+
+```
+
+use Artinict\LaravelCustoms as LC;
+
+/*
+instead of:
+use App\Drinks\Pepsi;
+use App\User;
+...
+*/
+
+```
+
+Then you can access the ```LaravelCustoms``` instance like so:
+
+```
+
+LC::Pepsi()::okurrr();
+
+```
+
+Below is how you would use ```LC``` in a real project.
+
+**Typically, you would do this:**
 
 ```
 <?php
