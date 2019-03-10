@@ -334,7 +334,7 @@ If you call a class that you didn't import in the ```cusfiguration.php```. Larav
 
 ## Credits
 Sadiq Lukman, Artinict. <br/>
-https://twitter.com/28thsly
+<a href="https://twitter.com/28thsly" target="_blank">https://twitter.com/28thsly</a>
 
 ## License
 
