@@ -70,13 +70,6 @@ return [
     |
     */
 
-    'Http' => [
-
-        'Request' => Illuminate\Http\Request::class,
-        'Response' => Illuminate\Http\Response::class,
-
-    ],
-
     'Facades' => [
 
         'App' => Illuminate\Support\Facades\App::class,
