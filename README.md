@@ -12,8 +12,9 @@ LC uses a concept known as IOCA (Import Once Call Anywhere).
 2. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#usage">Usage</a>
 3. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#import-once-call-anywhere-ioca">Import Once Call Anywhere (IOCA)</a>
 4. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#customs-configuration">Customs Configuration</a>
-5. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#credits">Credits</a>
-6. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#license">License</a>
+5. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#auto-resolve">Auto Resolve</a>
+6. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#credits">Credits</a>
+7. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#license">License</a>
 
 ## Installation
 
@@ -304,13 +305,6 @@ return [
     |
     */
 
-    'Http' => [
-
-        'Request' => Illuminate\Http\Request::class,
-        'Response' => Illuminate\Http\Response::class,
-
-    ],
-
     'Facades' => [
 
         'App' => Illuminate\Support\Facades\App::class,
@@ -390,10 +384,10 @@ return [
 
 > Note: LC_APP_NAMESPACE is a reserved key name and MUST NOT be overwritten.
 
-**Automatic Resolving**<br/>
-If you call a class that you didn't import in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app\``` directory to find the class and import it on the fly. An exception would be thrown if the class doesn't exists. 
+## Auto Resolve
+If you call a class that you didn't import in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app\``` directory to find the class and import it on the fly. An Exception would be thrown if the class doesn't exists. 
 
-> This is not a recommended approach especially on large projects.
+> This approach is not recommended especially on large projects.
 
 ## Credits
 Sadiq Lukman, Artinict. <br/>
