@@ -80,7 +80,7 @@ class FlightController extends Controller
   
       $flight = LC::Repository_Flight('::getFlightTo', 'Wakanda'); //for static methods
       $price = LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); //for non-static methods
-      $user = LC::User('::all'); 
+      $user = LC::User()::all();
       //...
     }
   
@@ -92,19 +92,35 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 
 **General usage with examples**:
 
-> 1. LC::Prefix_Classname(['methodName'], [args]); // For non-static methods.
+> 1. For non-static methods:<br/> LC::Prefix_Classname(['methodName'], [args]);
 
 ```E.g. LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); is equivalent to (new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
 
-> 2. LC::Prefix_Classname(['::methodName'], [args]); // For static methods, put ```::``` at the front of the method. 
+> 2. For static methods, put ```::``` at the front of the methodName:<br/>LC::Prefix_Classname(['::methodName'], [args]); 
 
-```E.g. LC::Facades_View('::make', 'path.to.view'); is equivalent to Illuminate\Support\Facades\View::make('path.to.view');```
+```E.g. LC::Facades_View('::make', 'path.to.view'); or LC::Facades_View()::make('path.to.view'); is equivalent to Illuminate\Support\Facades\View::make('path.to.view');```
 
-> 3. LC::Classname(['methodName'], [args]); 
+> 3. Calling a non-static method without "Prefix":<br/>LC::Classname(['methodName'], [args]); 
 
-```E.g. LC::User('getName'); is equivalent to App\User::getName();```
+```E.g. LC::User('getName'); is equivalent to (new App\User)->getName();```
 
-> 4. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
+> 4. To get a non-static property of a class:<br/> $classInstance = LC::Classname(); <br/> $property = (new $classInstance)->propertyName; 
+
+```
+E.g. $flight = LC::Flight();
+     $property = (new $flight)->category;
+     
+is equivalent to:
+$property = (new App\Flight)->$category;
+
+/*Honestly, i hardly use LC to reach for non-static properties😁*/
+```
+
+> 5. To get a static property of a class:<br/> LC::Classname()::$staticProperty; 
+
+```E.g. LC::Flight()::$category; is equivalent to App\Flight::$category;```
+
+> 6. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
 ```E.g. LC::User(); will return App\User```
 
 ## Import Once Call Anywhere (IOCA)
