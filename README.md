@@ -49,12 +49,15 @@ use App\Services\AirAPI;
 class FlightController extends Controller
 {
   
-  public function index()
+  public function index(Request $request)
   {
   
       $flight = FlightRepository::getFlightTo('Wakanda');
       $price = (new AirAPI)->getDiscountedPrice($flight, 'NGN'); 
       $user = App\User::all(); 
+      
+      $destination = $request->dest;
+
       //...
    
   }
@@ -69,26 +72,34 @@ class FlightController extends Controller
 namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Controller; //But wait! Why is this guy still here then?🤨 [See next paragraph]
 use Artinict\LaravelCustoms as LC;
+
+use App\Http\Controllers\Controller; 
+use Illuminate\Http\Request
+/*But wait! Why did we still import these guys?🤨 [See next paragraph]*/
 
 class FlightController extends Controller
 {
   
-  public function index()
+  public function index(Request $request)
   {
   
       $flight = LC::Repository_Flight('::getFlightTo', 'Wakanda'); //for static methods
       $price = LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); //for non-static methods
       $user = LC::User()::all();
+      
+      $destination = $request->dest;
+
       //...
     }
   
 }
 ```
-OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
+OK! So i'm sure you prolly wondering why we still had to write ```use App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
 
 <p>As a rule of thumb, LaravelCustoms should not replace the preloaded classes written by Laravel.</p>
+
+Ok! So what about ```use Illuminate\Http\Request```???! Unfortunately, LC cannot support Dependency Injection (DI) as at v1.0.😬
 
 **General usage with examples**:
 
