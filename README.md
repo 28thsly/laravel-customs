@@ -1,20 +1,7 @@
-# laravel-customs
-LaravelCustoms is a package that automatically import your classes &amp; dependencies. You can look at this way: Composer manages your dependencies. Customs takes care of the import.
+# Laravel Customs
+LaravelCustoms (LC) is a package that provides a cleaner way to import your classes and third-party packages. You can think of it this way: Composer manages your dependencies. Customs regulates the import.
 
-## About Laravel
-
-> **Note:** This repository contains the core code of the Laravel framework. If you want to build an application using Laravel 5, visit the main [Laravel repository](https://github.com/laravel/laravel).
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation gives you a complete toolset required to build any application with which you are tasked
+LC uses a concept known as IOCA (Import Once Call Anywhere) to import and call classes.
 
 ## Installation
 
@@ -22,21 +9,80 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 composer require artinict/laravel-customs
 ```
 
+```
+{
+"require": {
+      "php": ">=5.3.0"
+    }
+}    
+```
+
+## Usage
+
+**Typically you would do this:**
+
+```
+<?php
+
+namespace App\Http\Controllers;
 
 
-## Contributing
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request
+use App\Repository\FlightRepository;
+use App\Repository\PassengersRepository as PassRepo;
+use App\Services\Price;
+use App\Models\Flight;
+...
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+class FlightController extends Controller
+{
+  
+  public function index()
+  {
+  
+      $flight = FlightRepository::getFlightTo('Wakanda');
+      $price = (new Price)->getDiscountedPrice($flight, 'NGN'); 
+      $user = App\User::all(); 
+      //...
+   
+  }
+  
+}
+```
 
-## Code of Conduct
+**With LaravelCustoms, you don't have to import mulitple classes anymore. Instead, you import a single class like so:**
+```
+<?php
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](CODE_OF_CONDUCT.md).
+namespace App\Http\Controllers;
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+use Artinict\LaravelCustoms as LC;
+use App\Http\Controllers\Controller; //Then why is this guy still here then?🤨 [See next paragraph]
+
+class FlightController extends Controller
+{
+  
+  public function index()
+  {
+  
+      $flight = LC::FlightRepository('::getFlightTo', 'Wakanda');
+      $price = LC::Price('getDiscountedPrice', $flight, 'NGN');
+      $user = LC::User()::all(); 
+      //...
+    }
+  
+}
+```
+OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
+As a rule of thumb, LaravelCustoms should not replace the preloaded classes written by Laravel.
+
+## Credit
+Sadiq Lukman, Artinict
+https://twitter.com/28thsly
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The LaravelCustoms library is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
