@@ -80,16 +80,17 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 
 **General syntax with examples**:
 
-> LC::[Prefix_]Classname('methodName', [args]); // For non-static methods.
+> 1. LC::Prefix_Classname(['methodName'], [args]); // For non-static methods.
 
-<p> 
-      E.g. LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); means ```(new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
-</p>
+E.g. ```LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN');``` means ```(new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
 
-> LC::[Prefix_]Classname('::methodName', [args]); // For static methods. 
-<p> 
-      E.g. LC::Facades_View('::make', 'path.to.view'); means ```Illuminate\Support\Facades\View::make('path.to.view');```
-</p>
+> 2. LC::Prefix_Classname(['::methodName'], [args]); // For static methods, put ```::``` at the front of the method. 
+
+E.g. ```LC::Facades_View('::make', 'path.to.view');``` means ```Illuminate\Support\Facades\View::make('path.to.view');```
+
+> 3. LC::Classname(['methodName'], [args]); 
+
+E.g. ```LC::User('getName');``` means ```App\User::getName();```
 
 ## Customs Configuration
 As you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
