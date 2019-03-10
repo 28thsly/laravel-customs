@@ -94,34 +94,70 @@ OK! So i'm sure you prolly wondering why we still had to write ```App\Http\Contr
 
 > 1. For non-static methods:<br/> LC::Prefix_Classname(['methodName'], [args]);
 
-```E.g. LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN'); is equivalent to (new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');```
+```
+E.g.
+LC::Services_AirAPI('getDiscountedPrice', $flight, 'NGN');
+
+is equivalent to:
+(new App\Services\AirAPI)->getDiscountedPrice($flight, 'NGN');
+
+```
 
 > 2. For static methods, put ```::``` at the front of the methodName:<br/>LC::Prefix_Classname(['::methodName'], [args]); 
 
-```E.g. LC::Facades_View('::make', 'path.to.view'); or LC::Facades_View()::make('path.to.view'); is equivalent to Illuminate\Support\Facades\View::make('path.to.view');```
+```
+E.g.
+LC::Facades_View('::make', 'path.to.view'); or LC::Facades_View()::make('path.to.view');
+
+is equivalent to:
+Illuminate\Support\Facades\View::make('path.to.view');
+
+```
 
 > 3. Calling a non-static method without "Prefix":<br/>LC::Classname(['methodName'], [args]); 
 
-```E.g. LC::User('getName'); is equivalent to (new App\User)->getName();```
+```
+E.g.
+LC::User('getName');
+
+is equivalent to:
+(new App\User)->getName();
+
+```
 
 > 4. To get a non-static property of a class:<br/> $classInstance = LC::Classname(); <br/> $property = (new $classInstance)->propertyName; 
 
 ```
-E.g. $flight = LC::Flight();
-     $property = (new $flight)->category;
+E.g. 
+$flight = LC::Flight();
+$property = (new $flight)->category;
      
 is equivalent to:
 $property = (new App\Flight)->$category;
 
 /*Honestly, i hardly use LC to reach for non-static properties😁*/
+
 ```
 
 > 5. To get a static property of a class:<br/> LC::Classname()::$staticProperty; 
 
-```E.g. LC::Flight()::$category; is equivalent to App\Flight::$category;```
+```
+E.g.
+LC::Flight()::$category;
+
+is equivalent to:
+App\Flight::$category;
+
+```
 
 > 6. Finally, if you don't pass any argument, LaravelCustoms will return the class path.
-```E.g. LC::User(); will return App\User```
+```
+E.g.
+LC::User(); 
+
+will return App\User
+
+```
 
 ## Import Once Call Anywhere (IOCA)
 One of the objectives of LaravelCustoms is to get rid of having to repeatedly import classes everytime you need them. LC provides a cleaner way to do this by using a new concept known as IOCA (Import Once Call Anywhere).
