@@ -125,7 +125,7 @@ class FlightController extends Controller
   
 }
 ```
-OK! So i'm sure you're prolly wondering why we still had to write ```use App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
+OK! So i'm sure you're probably wondering why we still had to write ```use App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
 
 <p>As a rule of thumb, LaravelCustoms should not replace the default class imports written by Laravel.</p>
 
