@@ -5,7 +5,7 @@ LaravelCustoms (LC) is a package that provides a cleaner way to import your clas
 
 LC uses a concept known as IOCA (Import Once Call Anywhere). 
 
-> And if you don't want to use this concept, LC will automatically import the class on the fly. (See "Automatic Resolving" below)
+> If you don't want to use this concept, LC will automatically import the class on the fly. (See "Automatic Resolving" below)
 
 ## Table of Contents
 1. <a href="https://github.com/28TH/laravel-customs/blob/master/README.md#installation">Installation</a>
@@ -30,13 +30,13 @@ composer require artinict/laravel-customs
 }    
 ```
 
-If installation was successful, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. 
+If the installation was successful, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. 
 
-> NB: If you don't find the ```cusfiguration.php``` in ```config```, copy the ```cusfiguration.php``` in the ```$BASE_DIR.\vendor\artinict\laravel-customs\src\``` to ```$BASE_DIR.\config\``` <br/> Or:<br/> Import LaravelCustoms at the top of any of your classes and run the app. Now check the ```config``` for ```cusfiguration.php```
+> NB: If you don't find the ```cusfiguration.php``` in ```config```, copy the ```cusfiguration.php``` in the ```$BASE_DIR.\vendor\artinict\laravel-customs\src\``` to ```$BASE_DIR.\config\``` <br/> Or:<br/> Import LaravelCustoms at the top of any of your classes and run the app. Now check ```config``` directory for ```cusfiguration.php```
 
 ## Usage
 
-Import ```LaravelCustoms``` at the top of your class.
+Import ```LaravelCustoms``` as ```LC``` at the top of your class.
 
 ```
 
@@ -58,8 +58,7 @@ Then you can access the ```LaravelCustoms``` instance like so:
 LC::Pepsi()::okurrr();
 
 ```
-
-Below is how you would use ```LC``` in a real project.
+The general syntax is ```LC::[Prefix_]Classname('methodName', [args]);```. Below is how you would use ```LC``` in a real project.
 
 **Typically, you would do this:**
 
@@ -95,7 +94,8 @@ class FlightController extends Controller
 }
 ```
 
-**But now, with LaravelCustoms, you don't have to import mulitple classes anymore. Instead, you import a single class like so:**
+**But now, with LaravelCustoms, you don't have to import mulitple classes anymore. Instead you would import a single class like so:**
+
 ```
 <?php
 
@@ -125,11 +125,12 @@ class FlightController extends Controller
   
 }
 ```
+
 OK! So i'm sure you're probably wondering why we still had to write ```use App\Http\Controllers\Controller;```. Well, technically, we didn't write that line of code. Laravel did that for us when we ran the command, ```php artisan make:controller FlightController```.
 
 <p>As a rule of thumb, LaravelCustoms should not replace the default class imports written by Laravel.</p>
 
-Ok! So what about ```use Illuminate\Http\Request```???! Unfortunately, LC cannot support Dependency Injection (DI) as at v2.0.😬
+Ok! So what about ```use Illuminate\Http\Request```?! Unfortunately, LC cannot support Dependency Injection (DI) as at v2.1😬
 
 **General usage with examples**:
 
@@ -148,7 +149,9 @@ is equivalent to:
 
 ```
 Example:
-LC::Facades_View('::make', 'path.to.view'); or LC::Facades_View()::make('path.to.view');
+LC::Facades_View('::make', 'path.to.view'); 
+ OR
+LC::Facades_View()::make('path.to.view');
 
 is equivalent to:
 Illuminate\Support\Facades\View::make('path.to.view');
@@ -194,7 +197,7 @@ App\Flight::$category;
 6. **Finally, if you don't pass any argument, LaravelCustoms will return the class path.**
 ```
 Example:
-LC::User(); 
+return LC::User(); 
 
 will return App\User
 
@@ -257,7 +260,7 @@ And this would be called as ```LC::Repo_Flight();```.
 
 ## Customs Configuration
 
-When you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would manually import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
+When you install the LaravelCustoms package, a ```cusfiguration.php``` will be created in the Laravel's ```config``` directory. This is where you would import your classes using aliases and prefixes (Ensure you read through the ```cusfiguration.php``` below to familiarize yourself with the convention). 
 
 ```
 <?php
