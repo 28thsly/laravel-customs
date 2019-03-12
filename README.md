@@ -1,4 +1,4 @@
-<p align="center"><img src="http://leedder.com/display_image/reformed/5c847c7d92f23_7119356000.png/150/150/1" alt="Laravel Customs Logo"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/25490343/54197915-75f8da80-44c5-11e9-853f-38ee57e5b365.PNG" alt="Laravel Customs Logo"/></p>
 
 # Laravel Customs
 LaravelCustoms (LC) is a package that provides a cleaner way to import your classes and third-party packages. You can think of it this way: Composer manages your dependencies, Customs regulates your imports.
