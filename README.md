@@ -417,7 +417,7 @@ return [
 > Note: LC_APP_NAMESPACE is a reserved key name and MUST NOT be overwritten.
 
 ## Auto Resolve
-If you call a class that you didn't import in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app\``` directory to find the class and import it on the fly. An Exception would be thrown if the class doesn't exists. 
+If you call a class that wasn't imported in the ```cusfiguration.php```. LaravelCustoms will automatically scan through the ```app``` directory to find the class and import it on the fly. An Exception will be thrown if the class doesn't exist. 
 
 > This approach is not recommended especially on large projects.
 
